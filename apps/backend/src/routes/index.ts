@@ -38,6 +38,10 @@ userRouter.post("/signup",async (req : Request, res : Response) => {
         
         const token = jwt.sign({id : user.id},JWT_SECRET);
 
+        res.status(200).json({
+            message : "user is created sucessfully",
+            token : token
+        })
     }catch(e) {
         if(e instanceof Prisma.PrismaClientKnownRequestError ) {
             return res.status(409).json({
@@ -46,9 +50,6 @@ userRouter.post("/signup",async (req : Request, res : Response) => {
         }
     }
 
-    return res.status(200).json({
-        message : "user is created sucessfully"
-    })
 })
 
 
@@ -81,7 +82,7 @@ userRouter.post("/signin",async (req : Request, res : Response) => {
 
         const token = jwt.sign({id : user.id},JWT_SECRET);
 
-        return res.status(200).json({
+        res.status(200).json({
             message : "Sign In sucessful",
             token
         })
@@ -92,4 +93,61 @@ userRouter.post("/signin",async (req : Request, res : Response) => {
         })
     }
     
+})
+
+userRouter.post("/cart",async (req : Request, res : Response) => {
+
+    const body = req.body;
+
+    try {
+
+        const cart = prisma.cartItem.create({
+            data : {
+                quantity : body.quantity,
+                userId : body.userId,
+                productId : body.productId
+            }
+        })
+
+
+    }catch (e) {
+        res.status(500).json({
+            message : "Internal server error"
+        })
+    }
+
+    res.json({
+        message : "Added"
+    })
+
+})
+
+
+userRouter.get("/cart",async (req : Request, res : Response) => {
+
+    const body = req.body;
+
+    try {
+
+        const cart = prisma.cartItem.findMany({
+            where : {
+                userId : body.userId
+            },select : {
+                product : true,
+                quantity : true
+            }
+        })
+
+        res.json({
+            cart
+        })
+        
+    }catch (e) {
+        res.status(500).json({
+            message : "Internal server error"
+        })
+    }
+
+
+
 })
