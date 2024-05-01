@@ -4,18 +4,21 @@ import { PrismaClient } from "@prisma/client";
 const productRouter = Router();
 const prisma = new PrismaClient();
 
-productRouter.post("/prduct",async (req : Request, res : Response) => {
+productRouter.post("/product",async (req : Request, res : Response) => {
 
     const body = req.body;
 
     try {
         
-        const product = prisma.product.create({
+        
+        const product =await prisma.product.create({
             data : {
                 brand : body.brand,
                 description : body.description,
                 mrp : body.mrp,
-                url : body.imageUrl,
+                url : {
+                   set :  [body.imageUrl]
+                },
                 currentPrice : body.currentPrice
             }
         })
@@ -24,6 +27,7 @@ productRouter.post("/prduct",async (req : Request, res : Response) => {
             message : "product added successfully"
         })
     }catch (e) {
+        console.log(e);
         res.status(500).json({
             message : "Internal server error"
         })
@@ -37,6 +41,8 @@ productRouter.get("/products", async (req : Request, res : Response) => {
 
         const products = prisma.product.findMany({})
     }catch (e) {
+        
+        
         res.status(500).json({
             message : "Internal server error"
         })
