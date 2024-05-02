@@ -1,18 +1,13 @@
-import React from "react";
-import axios from "axios";
 
-const Card = ({ image, price, productId}: { image: string; price: number, productId : number}) => {
-
-  const addToWishList = async () => {
-              
-   await axios.post("http://localhost:3000/api/v1/user/wishlist",{
-        productId : productId
-    },{
-      headers : {
-        Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzE0NTU4NTgwfQ.Aa4QLSxXnaTAvqBBKrRwo3LUrFhaP9P6L9dqb_0OuS4"
-      } 
-    })
-  }
+const Card = ({
+  image,
+  price,
+  onClick,
+}: {
+  image: string;
+  price: number;
+  onClick : () => void
+}) => {
 
   return (
     <div>
@@ -29,7 +24,10 @@ const Card = ({ image, price, productId}: { image: string; price: number, produc
             <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
           </div>
           <div className="absolute -right-16 bottom-0 mr-2 mb-4 space-y-2 transition-all duration-300 group-hover:right-0">
-            <button onClick={addToWishList} className="flex  active:bg-red-400 h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-gray-700">
+            <button
+              onClick={onClick}
+              className="flex  active:bg-red-400 h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-gray-700"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -56,7 +54,9 @@ const Card = ({ image, price, productId}: { image: string; price: number, produc
               <span className="text-xl font-semibold text-slate-900">
                 ${price}
               </span>
-              <span className="text-sm text-slate-900 line-through ml-2">$99</span>
+              <span className="text-sm text-slate-900 line-through ml-2">
+                $99
+              </span>
             </p>
           </div>
           <button className="flex items-center justify-center bg-gray-900 px-2 py-1 text-sm text-white transition hover:bg-gray-700">
