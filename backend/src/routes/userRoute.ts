@@ -188,8 +188,8 @@ userRouter.get("/wishlist",authentication, async (req : Request, res : Response)
         }
     })
 
-    res.status(200).json({
+    res.status(200).json(
         wishList
-    })
+    )
 })
 export default userRouter;

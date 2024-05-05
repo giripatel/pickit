@@ -3,10 +3,12 @@ const Card = ({
   image,
   price,
   onClick,
+  addToCart,
 }: {
   image: string;
   price: number;
   onClick : () => void
+  addToCart : () => void
 }) => {
 
   return (
@@ -59,7 +61,9 @@ const Card = ({
               </span>
             </p>
           </div>
-          <button className="flex items-center justify-center bg-gray-900 px-2 py-1 text-sm text-white transition hover:bg-gray-700">
+          <button 
+          onClick={addToCart}
+          className="flex items-center justify-center bg-gray-900 px-2 py-1 text-sm text-white transition hover:bg-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="mr-2 h-5 w-5"

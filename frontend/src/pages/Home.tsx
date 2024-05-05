@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 import AppBar from '../components/AppBar'
 import Card from '../components/Card'
 import axios from 'axios'
@@ -16,6 +15,14 @@ function Home() {
        }
      })
    }
+
+  const addToCart = async (prodctId : number) => {
+    
+    await axios.post("http://localhost:3000/api/v1/user/wishlist",{
+      quantity : 1,
+      productId : prodctId
+    })
+  }
 
   const [products, setProducts] = useState([
     "https://cdn.pixabay.com/photo/2018/12/25/13/45/rock-object-3894284_960_720.jpg",
@@ -38,7 +45,7 @@ function Home() {
         {products.map((product, index) =>{
           return (
             <div key={index}>
-              <Card image={product} price={25} onClick={async () => {addToWishList(2)}}/>
+              <Card image={product} price={25} onClick={async () => {addToWishList(2)}} addToCart={async () => {addToCart(2)}}/>
             </div>
           )
         } )}

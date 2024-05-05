@@ -20,11 +20,11 @@ interface Product {
     brand: string;
     description: string;
     mrp: number;
-    url: string; // Single URL as a string for simplicity
+    url: string; 
     currentPrice: number;
   }
 
-const wishListAtom = atomFamily({
+export const wishListAtom = atomFamily({
     key : "wishListAtom",
     default : selectorFamily({
         key : "wishListAtomSelector",
@@ -36,7 +36,7 @@ const wishListAtom = atomFamily({
                 }
             })
             const wishlist = await response.data.wishlist; 
-            return wishlist as Product[]
+            return wishlist as Product[];
         }
     })
 })
