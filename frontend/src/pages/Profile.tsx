@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import AppBar from '../components/AppBar'
 
 const Profile = () => {
     const [profile,setProfile] = useState({
@@ -11,9 +12,12 @@ const Profile = () => {
         alterNateMobile : "",
         hintName : ""
     })
+
   return (
-    <div className='w-full h-screen flex justify-center items-center'>
-      <div className='border-[0.5px] w-[38rem] border-gray-300 h-[35rem] flex justify-center items-center'>
+    <div>
+      <AppBar/>
+      <div className='w-full h-screen flex justify-center items-center mt-7'>
+        <div className='border-[0.5px] w-[38rem] border-gray-300 h-[35rem] flex justify-center items-center'>
             <div className='flex flex-col gap-8'>
                 <div className=' flex flex-col gap-y-4'>
                     <h3 className='text-lg font-semibold'>Profile Details</h3>
@@ -45,6 +49,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+        </div>
       </div>
     </div>
   )
