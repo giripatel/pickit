@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import { RecoilRoot } from 'recoil'
 import WishList from './pages/WishList'
 import CartItems from './pages/CartItems'
+import Profile from './pages/Profile'
 const App = () => {
   return (
     <div>
@@ -12,7 +13,7 @@ const App = () => {
         <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/home' element={<Home/>} />
-            <Route path='/profile' element={<Home/>} />
+            <Route path='/profile' element={<Profile/>} />
             <Route path='/wishlist' element={<WishList/>} />
             <Route path='/cart' element={<CartItems />} />
           </Routes>
