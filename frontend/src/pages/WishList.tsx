@@ -19,7 +19,6 @@ const WishList = () => {
 
     const [loading, setLoading] = useState(true);
 
-
     const addToCart = async (productId: number) => {
 
         await axios.post("http://localhost:3000/api/v1/user/cart",{
