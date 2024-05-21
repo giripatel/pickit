@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import CartItemCard from '../components/CartItemCard';
 import AppBar from '../components/AppBar';
 
@@ -12,24 +12,32 @@ const CartItems = () => {
         description: "",
         mrp: 0,
         url: [""],
-        currentPrice: 0
+        currentPrice : 0
     } 
 }])
 
   const [loading, setLoading] = useState(true);
 
 
-  // const reomvCartItem = async (productId: number) => {
+  const reomvCartItem = async (productId: number) => {
 
-  //     await axios.post("http://localhost:3000/api/v1/user/cart",{
-  //         quantity : 1,
-  //         productId : productId
-  //     },{
-  //         headers : {
-  //             Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzE0NTU4NTgwfQ.Aa4QLSxXnaTAvqBBKrRwo3LUrFhaP9P6L9dqb_0OuS4"
-  //         }
-  //     })
-  // }
+      await axios.delete("http://localhost:3000/api/v1/user/cart",{
+         data:{
+          productId : productId
+      },
+        headers : {
+            Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzE0NTU4NTgwfQ.Aa4QLSxXnaTAvqBBKrRwo3LUrFhaP9P6L9dqb_0OuS4"
+        }
+    })
+    const response  = await axios.get("http://localhost:3000/api/v1/user/cart",{
+            headers : {
+                Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzE0NTU4NTgwfQ.Aa4QLSxXnaTAvqBBKrRwo3LUrFhaP9P6L9dqb_0OuS4"
+            }
+        })
+        
+        const data = await response.data.cart; 
+        setCart(data);
+  }
 
   useEffect(() => {
     const list = async () => {
@@ -45,26 +53,28 @@ const CartItems = () => {
         setLoading(false)
     }
 
+
     list()
   },[])
     
   if(loading) {
-    <div> 
+   return <div className="w-full h-screen flex justify-center items-center"> 
       Loading Cart......!
     </div>
   }
   return (
     <div>
     <AppBar/>
-    <div className='w-full flex justify-center mt-20'>
-        <div className='flex flex-wrap gap-1 w-[1300px] '>
+    <div className='w-full flex justify-center mt-24'>
+        <div className='grid grid-cols-4 gap-1 '>
          {cart.map((item,index) => {
           
           return <div key={index}>
-            <CartItemCard product={item.product} />
+            <CartItemCard product={item.product} removeItem={() => {
+              reomvCartItem(item.product.id)
+            }}/>
           </div>
          })}  
-
             
         </div>
     </div>

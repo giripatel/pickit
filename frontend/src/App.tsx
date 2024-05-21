@@ -1,5 +1,4 @@
-import React from 'react'
-import { Route, Router, BrowserRouter, Routes} from 'react-router-dom'
+import { Route, BrowserRouter, Routes} from 'react-router-dom'
 import Home from './pages/Home'
 import { RecoilRoot } from 'recoil'
 import WishList from './pages/WishList'

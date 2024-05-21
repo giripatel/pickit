@@ -155,6 +155,29 @@ userRouter.get("/cart",authentication, async (req: Request, res: Response) => {
   }
 });
 
+userRouter.delete("/cart", authentication, async (req : Request, res : Response) => {
+  const body = req.body;
+
+  try {
+    const deletedItem = await prisma.cartItem.deleteMany({
+      where: {
+        userId: req.userId,
+        productId: body.productId,
+      },
+    });
+
+  res.json({
+    message: "Deleted",
+  });
+
+  } catch (e) {
+    
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+})
+
 userRouter.post("/wishlist",authentication, async (req: Request, res: Response) => {
   const body = await req.body;
 

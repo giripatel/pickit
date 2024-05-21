@@ -1,31 +1,86 @@
+import { useState } from "react";
 import { Link } from "react-router-dom"
+import MenCatogeryList from "./MenCatogeryList";
+import WomenCatogeryList from "./WomenCatogeryList";
+import KidsCatogeryList from "./KidsCatogeryList";
+import HomeCatogeryLIst from "./HomeCatogeryLIst";
+import BeautyCatogery from "./BeautyCatogery";
 
 const AppBar = () => {
 
+  const [menHover, setMenHover] = useState(false);
+  const [womenMouseHover, setWomenMouseHover] = useState(false);
+  const [kidsMouseHover, setKidsMouseHover] = useState(false);
+  const [homeMouseHover, setHomeMouseHover] = useState(false);
+  const [beautyMouseHover, setBeautyMouseHover] = useState(false);
+  
+
+  const onMenMouseEnter = () => {
+    setMenHover(true)
+  }
+  const onMenMouseLeave = () => {
+    setMenHover(false)
+  }
+  
+  const onWomenMouseEnter = () => {
+    setWomenMouseHover(true)
+  }
+  const onWomenMouseLeave = () => {
+    setWomenMouseHover(false)
+  }
+  
+    const onKidsMouseEnter = () => {
+      setKidsMouseHover(true)
+    }
+    const onKidsMouseLeave = () => {
+      setKidsMouseHover(false)
+    }
+  
+    const onHomeMouseEnter = () => {
+      setHomeMouseHover(true)
+    }
+    const onHomeMouseLeave = () => {
+      setHomeMouseHover(false)
+    }
+  
+    const onBeautyMouseEnter = () => {
+      setBeautyMouseHover(true)
+    }
+    const onBeautyMouseLeave = () => {
+      setBeautyMouseHover(false)
+    }
+  
 
     return (
 
     <div>
     <div className='h-20 mb-16 z-30 fixed bg-white  w-full flex top-0 shadow-lg border-black '>
       <nav className='flex justify-between w-full'>
-        <div className="flex items-center ml-14">
-        <img className="h-14 " src="https://cdn.iconscout.com/icon/free/png-256/free-myntra-2709168-2249158.png?f=webp" alt="" />
-        </div>
-        <div className='flex font-sans text-sm font-semibold text-gray-700 tracking-wide'> 
-            <div className="hover:bg-red-300 flex items-center">
-              <a className="px-4" href=""> MEN </a>
+          <div className="flex items-center ml-14">
+            <Link to={"/"}>
+                <img className="h-14 " src="https://cdn.iconscout.com/icon/free/png-256/free-myntra-2709168-2249158.png?f=webp" alt="" />
+            </Link>
+          </div>
+        <div className='flex font-sans  tracking-wide'> 
+            <div onMouseEnter={onMenMouseEnter} onMouseLeave={onMenMouseLeave} className="hover:bg-red-300 flex items-center cursor-pointer">
+              <a className="px-4 text-sm font-semibold text-gray-700" href=""> MEN </a>
+              <div>{menHover && <MenCatogeryList/>}  </div>
             </div>
-            <div className="flex items-center">
-              <a className="px-4" href=""> WOMEN </a>
+            <div className="flex items-center" onMouseEnter={onWomenMouseEnter} onMouseLeave={onWomenMouseLeave}>
+              <a className="px-4 text-sm font-semibold text-gray-700" href=""> WOMEN </a>
+              <div>{womenMouseHover && <WomenCatogeryList/>}  </div>
             </div>
-            <div className="flex items-center">
-              <a className="px-4" href=""> KIDS </a>
+            <div className="flex items-center" onMouseEnter={onKidsMouseEnter} onMouseLeave={onKidsMouseLeave}>
+              <a className="px-4 text-sm font-semibold text-gray-700" href=""> KIDS </a>
+              <div>{kidsMouseHover && <KidsCatogeryList/>}</div>
             </div>
-            <div className="[word-spacing:-px] text-nowrap flex items-center">
-              <a className="px-4" href=""> HOME & LIVING </a>
+            <div className="text-nowrap flex items-center" onMouseEnter={onHomeMouseEnter} onMouseLeave={onHomeMouseLeave}>
+              <a className="px-4 text-sm font-semibold text-gray-700" href=""> HOME & LIVING </a>
+              {homeMouseHover && <HomeCatogeryLIst/>}
             </div>
-            <div className="flex items-center">
-              <a className="px-4" href=""> BEAUTY </a>
+            <div className="flex items-center" onMouseEnter={onBeautyMouseEnter} onMouseLeave={onBeautyMouseLeave}>
+              <a className="px-4 text-sm font-semibold text-gray-700" href=""> BEAUTY </a>
+              {beautyMouseHover && <BeautyCatogery/>}
             </div>  
         </div>
 

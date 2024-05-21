@@ -2,21 +2,28 @@
 const Card = ({
   image,
   price,
+  brand,
+  description,
+  mrp,
   onClick,
   addToCart,
 }: {
-  image: string;
-  price: number;
-  onClick : () => void
-  addToCart : () => void
+  image       : string;
+  price       : number;
+  brand       : string,
+  description : string,
+  mrp         : number,
+  onClick     : () => void
+  addToCart   : () => void
 }) => {
 
   return (
     <div>
-      <div className="group my-3 flex w-full max-w-xs flex-col overflow-hidden border border-gray-100 bg-white shadow-md">
+      <div className="group my-3 flex w-80 flex-col overflow-hidden border border-gray-100 bg-white shadow-md">
         <a className="relative flex h-60 overflow-hidden" href="#">
           <img
-            className="absolute top-0 right-0 h-full w-full object-cover"
+            // className="absolute top-0 right-0 w-full h-full object-cover"
+            className=" h-full m-auto object-cover"
             src={image}
             alt="product image"
           />
@@ -45,10 +52,13 @@ const Card = ({
             </button>
           </div>
         </a>
-        <div className="mt-4 px-5 pb-5">
+        <div className="mt-4 px-5 pb-5 h-full">
+          <div className="font-semibold text-lg">
+            {brand}
+          </div>
           <a href="#">
-            <h5 className="text-xl tracking-tight text-slate-900">
-              Lululemon Comfort Tee - White
+            <h5 className="text-md tracking-tight text-slate-900">
+              {description.length < 35? description : description.substring(0,35)+"..."}
             </h5>
           </a>
           <div className="mt-2 mb-5 flex items-center justify-between">
@@ -57,7 +67,7 @@ const Card = ({
                 ${price}
               </span>
               <span className="text-sm text-slate-900 line-through ml-2">
-                $99
+                ${mrp}
               </span>
             </p>
           </div>

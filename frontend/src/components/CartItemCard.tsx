@@ -1,29 +1,30 @@
 import React from "react";
 
 interface Cart {
-  product: {
     id: number;
     brand: string;
     description: string;
     mrp: number;
     url: string[];
     currentPrice: number;
-  };
 }
 
 const CartItemCard = ({
   product,
-//   removeItem,
-}: 
-   Cart
-//   removeItem: () => void;
+  removeItem
+}:{
+  product : Cart,
+  removeItem : () => void
+}
+
 ) => {
   return (
     <div>
-      <div className="group my-3 flex w-full max-w-xs flex-col overflow-hidden border border-gray-100 bg-white shadow-md">
+      <div className="group my-3 flex w-80 flex-col overflow-hidden border border-gray-100 bg-white shadow-md">
         <a className="relative flex h-60 overflow-hidden" href="#">
           <img
-            className="absolute top-0 right-0 h-full w-full object-cover"
+            // className=" top-0 right-0 h-full object-cover"
+            className="h-full m-auto object-cover"
             src={product.url[0]}
             alt="product image"
           />
@@ -34,9 +35,13 @@ const CartItemCard = ({
           </div>
         </a>
         <div className="mt-4 px-5 pb-5">
+        <div className="font-semibold text-lg">
+            {product.brand}
+          </div>
           <a href="#">
-            <h5 className="text-xl tracking-tight text-slate-900">
-              {product.description}
+            <h5 className="text-md tracking-tight text-slate-900">
+              {/* {product.description} */}
+              {product.description.length < 35? product.description : product.description.substring(0,35)+"..."}
             </h5>
           </a>
           <div className="mt-2 mb-5 flex items-center justify-between">
@@ -45,12 +50,12 @@ const CartItemCard = ({
                 ${product.currentPrice}
               </span>
               <span className="text-sm text-slate-900 line-through ml-2">
-                $99
+                ${product.mrp}
               </span>
             </p>
           </div>
           <button
-            // onClick={removeItem}
+            onClick={removeItem}
             className="flex items-center justify-center bg-gray-900 px-2 py-1 text-sm text-white transition hover:bg-gray-700"
           >
             <svg

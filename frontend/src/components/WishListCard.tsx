@@ -1,14 +1,14 @@
 
 
 interface WishList{
-  product :{
+  // product :{
     id: number,
     brand: string,
     description: string,
     mrp: number,
     url: string[],
     currentPrice: number
-    }
+    // }
 }
 
 
@@ -28,10 +28,10 @@ const WishListCard = ({
 
 return (
   <div>
-    <div className="group my-3 flex w-full max-w-xs flex-col overflow-hidden border border-gray-100 bg-white shadow-md">
+    <div className="group my-3 flex w-80 flex-col overflow-hidden border border-gray-100 bg-white shadow-md">
       <a className="relative flex h-60 overflow-hidden" href="#">
         <img
-          className="absolute top-0 right-0 h-full w-full object-cover"
+          className="absolute top-0 right-0 h-full object-cover"
           src={product.url[0]}
           alt="product image"
         />

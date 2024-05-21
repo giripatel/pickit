@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const productRouter = Router();
 const prisma = new PrismaClient();
 
-productRouter.post("/product",async (req : Request, res : Response) => {
+productRouter.post("/",async (req : Request, res : Response) => {
 
     const body = req.body;
 
@@ -35,11 +35,12 @@ productRouter.post("/product",async (req : Request, res : Response) => {
 
 })
 
-productRouter.get("/products", async (req : Request, res : Response) => {
+productRouter.get("/allproducts", async (req : Request, res : Response) => {
 
     try {
 
-        const products = prisma.product.findMany({})
+        const products = await prisma.product.findMany({})
+        return res.json(products)
     }catch (e) {
         
         
@@ -50,8 +51,7 @@ productRouter.get("/products", async (req : Request, res : Response) => {
 
 })
 
-productRouter.get("/product/:id", async (req : Request, res : Response) => {
-
+productRouter.get("/:id", async (req : Request, res : Response) => {
     const productId  = req.query;
 
     const product = prisma.product.findFirst({
