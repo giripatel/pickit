@@ -54,7 +54,7 @@ const AppBar = () => {
     return (
 
     <div>
-    <div className='h-20 mb-16 z-30 fixed bg-white  w-full flex top-0 shadow-lg border-black '>
+    <div className='h-20 mb-16 z-30 fixed bg-white  w-full flex top-0 shadow-lg'>
       <nav className='flex justify-between w-full'>
           <div className="flex items-center ml-14">
             <Link to={"/"}>
