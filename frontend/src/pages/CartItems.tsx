@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import CartItemCard from "../components/CartItemCard";
 import AppBar from "../components/AppBar";
 import { useTotalCartPrice } from "../hooks/useTotalCartPrice";
-import TotalAmount from "@/components/ui/TotalAmount";
+import TotalAmount, { TotalAmountSkeleton } from "@/components/ui/TotalAmount";
+import Skeleton from "@/components/ui/Skeleton";
 
 const CartItems = () => {
   const [cart, setCart] = useState([
@@ -95,8 +96,25 @@ const CartItems = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-screen flex justify-center items-center">
-        Loading Cart......!
+      <div>
+        <AppBar/>
+        <div className="w-full flex justify-center mt-24">
+          <div className="grid grid-cols-6">
+            <div className='col-span-4 grid grid-cols-3 gap-1'>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+            </div>
+            <div className="col-span-2">
+            <TotalAmountSkeleton/>
+          </div>
+          </div>
+        </div>
       </div>
     );
   }

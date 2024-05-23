@@ -70,3 +70,28 @@ const TotalAmount = ({
 }
 
 export default TotalAmount
+
+
+export const TotalAmountSkeleton = () => {
+  return (
+    <div>
+        <div className="flex justify-center p-3 animate-pulse">
+            <div className="w-96 h-[30rem] p-2 pt-4 bg-white border-l border-t rounded-sm">
+              <div>
+                <div className='text-sm font-semibold text-gray-400 h-5 bg-gray-300 w-16 rounded-xl ms-3'></div>
+                <div className="flex justify-between h-10 my-2 rounded-xl bg-gray-300 p-3"></div>
+                <hr className="ms-2" />
+                <div>
+                  <div className="grid grid-cols-2 bg-gray-300 font-serif h-24 rounded-xl text-sm gap-2 pt-4 px-4"></div>
+                  <div className="flex justify-between font-serif h-12 rounded-xl bg-gray-300 font-semibold border-t mt-3 border-b p-3"></div>
+                </div>
+                <div className='w-full h-10 bg-gray-300 rounded-lg flex justify-center items-center font-semibold text-sm mt-3 text-white cursor-pointer'></div>
+              </div>
+            </div>
+          </div>
+    </div>
+  )
+}
+
+
+  

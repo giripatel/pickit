@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import AppBar from '../components/AppBar'
 import Card from '../components/Card'
 import axios from 'axios'
+import Skeleton from '@/components/ui/Skeleton'
 
 function Home() {
 
@@ -15,6 +16,7 @@ function Home() {
   }])
 
   const [loading, setLoading] = useState(true)
+  
   useEffect(() => {
     const productList = async () => {
       const response = await axios.get("http://localhost:3000/api/v1/product/allproducts");
@@ -63,9 +65,19 @@ function Home() {
 
   if(loading) {
     return (
-      <div className='w-full h-screen flex justify-center items-center'>
-        Loading....
+      <div>
+      <AppBar/>
+      <div className='grid grid-cols-4 m-24 gap-y-2'>
+          <Skeleton/>
+          <Skeleton/>
+          <Skeleton/>
+          <Skeleton/>
+          <Skeleton/>
+          <Skeleton/>
+          <Skeleton/>
+          <Skeleton/>
       </div>
+  </div> 
     )
   }
 

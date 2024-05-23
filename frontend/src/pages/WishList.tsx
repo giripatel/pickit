@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import WishListCard from '../components/WishListCard';
 import AppBar from '../components/AppBar';
+import Skeleton from '@/components/ui/Skeleton';
 
 const WishList = () => {
 
@@ -48,7 +49,21 @@ const WishList = () => {
     },[])
 
     if(loading){
-        return "Loading.......!"
+        return (
+            <div>
+            <AppBar/>
+            <div className='grid grid-cols-4 m-24 gap-y-2'>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+            </div>
+        </div> 
+          )
     }
     return (
         <div>
